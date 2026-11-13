@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" role="img" aria-labelledby="title desc">
+  <title id="title">Fondations LLM — mémoire et sortie structurée</title>
+  <desc id="desc">Illustration d'une fenetre de contexte conversationnel et d'une reponse validee par schema.</desc>
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#103c2d"/><stop offset="1" stop-color="#071f18"/></linearGradient></defs>
+  <rect width="960" height="480" rx="22" fill="url(#bg)"/>
+  <text x="54" y="58" fill="#d9b26a" font-family="Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="3">ILLUSTRATION · CONTEXTE &amp; SORTIE STRUCTURÉE</text>
+  <text x="85" y="120" fill="#e9efe9" font-family="Arial,sans-serif" font-size="21" font-weight="700">FENÊTRE DE CONTEXTE</text>
+  <rect x="84" y="147" width="430" height="214" rx="18" fill="#0b291f" stroke="#60786b" stroke-width="2"/>
+  <g font-family="Arial,sans-serif" font-size="15">
+    <rect x="107" y="171" width="248" height="42" rx="12" fill="#204b37"/><text x="124" y="198" fill="#e9efe9">Question initiale</text>
+    <rect x="226" y="226" width="258" height="42" rx="12" fill="#d9b26a"/><text x="244" y="253" fill="#103c2d">Réponse du modèle</text>
+    <rect x="107" y="281" width="248" height="42" rx="12" fill="#204b37"/><text x="124" y="308" fill="#e9efe9">Contexte récent conservé</text>
+  </g>
+  <path d="M379 341h94" stroke="#c8874a" stroke-width="5" stroke-dasharray="7 8"/><text x="426" y="385" text-anchor="middle" fill="#b9cbbf" font-family="Arial,sans-serif" font-size="13">fenêtre glissante</text>
+  <path d="M548 252h82" stroke="#d9b26a" stroke-width="4"/><path d="m622 242 18 10-18 10" fill="none" stroke="#d9b26a" stroke-width="4"/>
+  <text x="723" y="120" text-anchor="middle" fill="#e9efe9" font-family="Arial,sans-serif" font-size="21" font-weight="700">SORTIE VALIDÉE</text>
+  <rect x="650" y="147" width="224" height="214" rx="18" fill="#f3f4ee"/>
+  <text x="674" y="181" fill="#103c2d" font-family="Arial,sans-serif" font-size="15" font-weight="700">SCHÉMA PYDANTIC</text>
+  <g font-family="monospace" font-size="14"><text x="674" y="220" fill="#56675f">{</text><text x="692" y="248" fill="#7a4a1e">"topic":</text><text x="775" y="248" fill="#204b37">"..."</text><text x="692" y="277" fill="#7a4a1e">"summary":</text><text x="692" y="306" fill="#204b37">"..."</text><text x="674" y="337" fill="#56675f">}</text></g>
+  <circle cx="847" cy="340" r="17" fill="#62c78b"/><path d="m839 340 6 6 11-13" fill="none" stroke="#103c2d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="480" y="430" text-anchor="middle" fill="#b9cbbf" font-family="Arial,sans-serif" font-size="15">LLAMA LOCAL · BUDGET DE TOKENS · VALIDATION</text>
+</svg>

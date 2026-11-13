@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" role="img" aria-labelledby="title desc">
+  <title id="title">Recherche structurée de profils publics</title>
+  <desc id="desc">Illustration d'une interface de recherche de profils avec criteres, resultats et controle des sources.</desc>
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#103c2d"/><stop offset="1" stop-color="#071f18"/></linearGradient></defs>
+  <rect width="960" height="480" rx="22" fill="url(#bg)"/>
+  <text x="54" y="58" fill="#d9b26a" font-family="Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="3">ILLUSTRATION · RECHERCHE AVEC GARDE-FOUS</text>
+  <rect x="58" y="96" width="844" height="325" rx="18" fill="#f3f4ee"/>
+  <rect x="58" y="96" width="844" height="52" rx="18" fill="#e3e9e1"/><circle cx="88" cy="122" r="7" fill="#c8874a"/><circle cx="111" cy="122" r="7" fill="#d9b26a"/><circle cx="134" cy="122" r="7" fill="#557464"/>
+  <rect x="84" y="169" width="790" height="58" rx="12" fill="#fff" stroke="#d5dbd3" stroke-width="2"/>
+  <circle cx="113" cy="197" r="13" fill="none" stroke="#567064" stroke-width="4"/><path d="m123 207 11 11" stroke="#567064" stroke-width="4" stroke-linecap="round"/>
+  <text x="151" y="203" fill="#56675f" font-family="Arial,sans-serif" font-size="17">Compétences, rôle et zone géographique…</text>
+  <rect x="84" y="246" width="216" height="146" rx="12" fill="#fff" stroke="#d5dbd3"/><circle cx="123" cy="287" r="22" fill="#d9b26a"/><path d="M90 350q33-54 66 0" fill="#204b37"/>
+  <text x="163" y="281" fill="#103c2d" font-family="Arial,sans-serif" font-size="16" font-weight="700">PROFIL PUBLIC</text><text x="163" y="306" fill="#56675f" font-family="Arial,sans-serif" font-size="13">fiche anonymisee</text>
+  <rect x="322" y="246" width="250" height="146" rx="12" fill="#fff" stroke="#d5dbd3"/>
+  <text x="344" y="278" fill="#103c2d" font-family="Arial,sans-serif" font-size="15" font-weight="700">CRITÈRES VALIDÉS</text>
+  <g font-family="Arial,sans-serif" font-size="13"><text x="344" y="310" fill="#56675f">Compétences</text><rect x="443" y="297" width="102" height="18" rx="9" fill="#dce8dd"/><text x="494" y="311" text-anchor="middle" fill="#204b37">correspond</text><text x="344" y="341" fill="#56675f">Localisation</text><rect x="443" y="328" width="102" height="18" rx="9" fill="#f3e6d6"/><text x="494" y="342" text-anchor="middle" fill="#7a4a1e">à vérifier</text></g>
+  <rect x="594" y="246" width="280" height="146" rx="12" fill="#204b37"/>
+  <text x="618" y="280" fill="#d9b26a" font-family="Arial,sans-serif" font-size="15" font-weight="700">SOURCES &amp; LIMITES</text>
+  <path d="M621 305h219M621 332h190M621 359h205" stroke="#dbe5dc" stroke-width="7" stroke-linecap="round" opacity=".8"/>
+  <text x="480" y="449" text-anchor="middle" fill="#b9cbbf" font-family="Arial,sans-serif" font-size="14">STREAMLIT · PYDANTIC · VALIDATION EXPLICITE</text>
+</svg>

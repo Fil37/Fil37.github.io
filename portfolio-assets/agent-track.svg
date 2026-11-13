@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" role="img" aria-labelledby="title desc">
+  <title id="title">Agent Track — superviseur et outils</title>
+  <desc id="desc">Illustration d'un agent superviseur qui route une demande vers un expert specialise et des outils.</desc>
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#103c2d"/><stop offset="1" stop-color="#071f18"/></linearGradient></defs>
+  <rect width="960" height="480" rx="22" fill="url(#bg)"/>
+  <text x="54" y="58" fill="#d9b26a" font-family="Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="3">ILLUSTRATION · AGENT LOCAL MULTI-OUTILS</text>
+  <g fill="none" stroke="#c8874a" stroke-width="4"><path d="M202 239h99M461 239h99M650 239v-100h80M650 239v100h80"/></g>
+  <g fill="#c8874a"><path d="m291 230 16 9-16 9zM551 230l16 9-16 9zM721 131l12 8-12 8zM721 331l12 8-12 8z"/></g>
+  <g font-family="Arial,sans-serif" text-anchor="middle">
+    <rect x="56" y="185" width="146" height="108" rx="18" fill="#f3f4ee"/><text x="129" y="232" fill="#103c2d" font-size="18" font-weight="700">DEMANDE</text><text x="129" y="260" fill="#56675f" font-size="15">utilisateur</text>
+    <rect x="307" y="170" width="154" height="138" rx="20" fill="#d9b26a"/><circle cx="384" cy="207" r="18" fill="#103c2d"/><path d="M350 267q34-50 68 0" fill="none" stroke="#103c2d" stroke-width="8" stroke-linecap="round"/><text x="384" y="292" fill="#103c2d" font-size="17" font-weight="700">SUPERVISEUR</text>
+    <rect x="568" y="185" width="164" height="108" rx="18" fill="#f3f4ee"/><text x="650" y="232" fill="#103c2d" font-size="18" font-weight="700">EXPERT</text><text x="650" y="260" fill="#56675f" font-size="15">sous-agent</text>
+    <rect x="744" y="82" width="164" height="94" rx="18" fill="#204b37" stroke="#d9b26a" stroke-width="2"/><text x="826" y="124" fill="#e9efe9" font-size="17" font-weight="700">RECHERCHE</text><text x="826" y="151" fill="#b9cbbf" font-size="14">source publique</text>
+    <rect x="744" y="302" width="164" height="94" rx="18" fill="#204b37" stroke="#d9b26a" stroke-width="2"/><text x="826" y="344" fill="#e9efe9" font-size="17" font-weight="700">CALCUL</text><text x="826" y="371" fill="#b9cbbf" font-size="14">outil controle</text>
+  </g>
+  <text x="480" y="426" text-anchor="middle" fill="#b9cbbf" font-family="Arial,sans-serif" font-size="15">ORCHESTRATION LOCALE · LANGGRAPH · OLLAMA</text>
+</svg>
