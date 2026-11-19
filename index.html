@@ -143,6 +143,55 @@ details[open] summary::before{content:"−"}
 details p{margin-top:12px}
 .proj .link{font-weight:700;font-size:15px}
 
+
+/* Projets secondaires en grille compacte (s'ouvrent au clic) */
+.more{border-top:1px solid var(--rule);padding-top:34px}
+.more-title{font-size:20px;margin:0 0 18px;font-variation-settings:"wdth" 80}
+.more-title span{font-size:14px;font-weight:500;color:var(--muted);font-variation-settings:normal}
+.more[hidden]{display:none}
+.proj-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start}
+.js .proj.compact{display:flex;flex-direction:column;gap:0;padding:0;border:1px solid var(--rule);border-radius:10px;background:#fff;overflow:hidden;cursor:pointer;transition:box-shadow .2s,transform .2s}
+.js .proj.compact[hidden]{display:none}
+.js .proj.compact:not(.open):hover{box-shadow:0 8px 24px rgba(15,61,46,.12);transform:translateY(-2px)}
+.js .proj.compact .side{order:2;padding:12px 16px 0;font-size:12.5px}
+.js .proj.compact .side strong{display:inline;font-size:12.5px;margin-right:6px}
+.js .proj.compact .side .kind{display:none}
+.js .proj.compact>div:not(.side){display:contents}
+.js .proj.compact .proj-visual{order:1;margin:0;max-width:none;border:0;border-radius:0}
+.js .proj.compact .proj-visual img{aspect-ratio:16/9}
+.js .proj.compact h3{order:3;font-size:19px;margin:6px 16px 8px}
+.js .proj.compact p:first-of-type{order:4;margin:0 16px 14px;font-size:15px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.js .proj.compact :is(.figures,details,.tags,p:not(:first-of-type)){display:none}
+.js .proj.compact .more-btn{order:9;margin:0 16px 16px;align-self:flex-start;font:inherit;font-size:14px;font-weight:700;color:var(--mask);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-decoration-color:var(--copper);text-underline-offset:3px}
+.js .proj.compact.open{grid-column:1/-1;display:grid;grid-template-columns:230px 1fr;gap:36px;padding:28px;cursor:auto}
+.js .proj.compact.open>div:not(.side){display:block}
+.js .proj.compact.open .side{order:0;padding:0;font-size:14px}
+.js .proj.compact.open .side strong{display:block;font-size:15px}
+.js .proj.compact.open .side .kind{display:table}
+.js .proj.compact.open .proj-visual{margin:0 0 20px;max-width:680px;border:1px solid var(--rule);border-radius:10px}
+.js .proj.compact.open h3{font-size:clamp(22px,2.6vw,28px);margin:0 0 12px}
+.js .proj.compact.open p:first-of-type{display:block;margin:0 0 14px;font-size:inherit}
+.js .proj.compact.open :is(.figures){display:flex}
+.js .proj.compact.open :is(.tags){display:flex}
+.js .proj.compact.open :is(details,p:not(:first-of-type)){display:block}
+.js .proj.compact.open .more-btn{margin:16px 0 0}
+@media (max-width:980px){.proj-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:860px){.js .proj.compact.open{grid-template-columns:1fr;gap:12px;padding:20px}}
+@media (max-width:620px){.proj-grid{grid-template-columns:1fr}}
+
+/* Menu repliable sur téléphone */
+.menu-btn{display:none}
+@media (max-width:620px){
+  .nav{flex-direction:row!important;align-items:center!important;flex-wrap:wrap;height:auto;padding:10px 0;gap:0}
+  .menu-btn{display:inline-flex;align-items:center;gap:8px;margin-left:auto;font:inherit;font-size:14px;font-weight:700;color:var(--ink);background:none;border:1px solid var(--rule);border-radius:6px;padding:7px 12px;cursor:pointer}
+  .menu-btn .bars{width:16px;height:2px;background:currentColor;box-shadow:0 -5px 0 currentColor,0 5px 0 currentColor}
+  .js .nav>nav{display:none;flex-basis:100%}
+  .js header.site.menu-open .nav>nav{display:block}
+  .nav ul{flex-direction:column;gap:0!important;padding:8px 0 4px!important;overflow:visible!important}
+  .nav ul a{display:block;padding:11px 0;font-size:16px;border-bottom:1px solid var(--rule)}
+  .nav ul li:last-child a{border-bottom:0}
+}
+
 /* Expérience */
 .timeline{position:relative;padding-left:34px}
 .timeline::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:3px;background:var(--copper);border-radius:2px}
@@ -256,6 +305,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .layer p,.edu p{font-size:9pt}
   .proj{grid-template-columns:120px 1fr;gap:12pt;padding:7pt 0;break-inside:avoid}
   .proj[hidden]{display:grid!important}
+  .proj.compact{display:grid!important;border:0!important;padding:7pt 0!important}
+  .proj.compact *{display:revert!important}
+  .more-btn,.more-title span{display:none!important}
   .proj h3,.proj.featured h3{font-size:12pt;margin-bottom:4pt}
   .proj p{margin-bottom:5pt;max-width:none}
   .proj .side{font-size:8pt}
@@ -290,7 +342,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 <header class="site"><div class="wrap nav">
   <a class="brand" href="#top">Franck Essome</a>
-  <nav aria-label="Sections"><ul>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span class="bars" aria-hidden="true"></span>Menu</button>
+  <nav aria-label="Sections" id="menu"><ul>
     <li><a href="#couches">Expertise</a></li>
     <li><a href="#projets">Projets</a></li>
     <li><a href="#experience">Expérience</a></li>
@@ -377,41 +430,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   </div>
   <p class="count" aria-live="polite"></p>
 
-  <article class="proj featured" data-cat="genai" data-type="perso">
-    <div class="side"><strong>Breeze</strong>Agents LLM, rendu vidéo<span class="kind perso">Projet personnel</span></div>
-    <div>
-      <figure class="proj-visual"><img src="portfolio-assets/breeze-electronics.jpg" alt="Aperçu d’une leçon Breeze sur la tension et le courant dans un circuit électrique" loading="lazy" decoding="async"></figure>
-      <h3>Breeze, une chaîne de production de vidéos pédagogiques par IA</h3>
-      <p>Un pipeline multi-agents qui part d’une idée reçue et en fait une vidéo animée de 90 à 180 secondes, narrée en français : recherche, simplification, script, storyboard, contrôle qualité, rendu, métadonnées et publication. Quatre chaînes thématiques (électronique, physique, mathématiques, économie) tournent dans un même processus.</p>
-      <div class="figures">
-        <div><b>9 agents</b><span>coordonnés par un orchestrateur</span></div>
-        <div><b>4 chaînes</b><span>thématiques produites en parallèle</span></div>
-        <div><b>53</b><span>scripts de test hors ligne</span></div>
-      </div>
-      <details><summary>Architecture</summary><p>Chaque agent écrit un fichier JSON lu par le suivant. L’agent de contrôle qualité peut renvoyer le script ou le storyboard jusqu’à trois fois avant le rendu. Le rendu dessine chaque image dans un navigateur piloté par Playwright, puis FFmpeg assemble la vidéo, la voix off et les sous-titres. Un tableau de bord web suit l’état de chaque agent et le coût de chaque exécution, et le fournisseur de LLM se choisit dans la configuration (OpenAI, Anthropic, Gemini ou Ollama en local).</p></details>
-      <ul class="tags"><li>Python</li><li>LLM</li><li>Multi-agents</li><li>Playwright</li><li>FFmpeg</li><li>TTS</li><li>Flask</li></ul>
-      <p style="margin-top:14px"><a class="link" href="https://github.com/Fil37/breeze.edu-pipeline">Code sur GitHub</a> · <a class="link" href="https://github.com/Fil37/breeze.edu-pipeline/blob/main/assets/breeze-demo-electronics.mp4">Voir une vidéo produite</a></p>
-    </div>
-  </article>
-
-  <article class="proj" data-cat="genai edge" data-type="perso">
-    <div class="side"><strong>Auto Clip</strong>Agents LLM, vision, rendu vidéo<span class="kind perso">Projet personnel</span></div>
-    <div>
-      <figure class="proj-visual"><img src="portfolio-assets/auto-clip.svg" alt="Illustration du pipeline Auto Clip : une vidéo longue traverse cinq agents coordonnés par un orchestrateur et devient des clips verticaux sous-titrés" loading="lazy" decoding="async"></figure>
-      <h3>Auto Clip, des clips verticaux tirés de vidéos longues</h3>
-      <p>Une application locale qui transforme une vidéo longue (spectacle, interview, VOD Twitch de jeu vidéo) en clips verticaux de 61 à 120 secondes, sous-titrés mot à mot, avec un titre accrocheur et une miniature. Un orchestrateur coordonne cinq agents : transcription, sélection des passages, critique avec droit de veto, cadrage automatique et rendu.</p>
-      <div class="figures">
-        <div><b>6 agents</b><span>un orchestrateur et cinq spécialistes</span></div>
-        <div><b>×4</b><span>transcription sur GPU local plutôt que CPU</span></div>
-        <div><b>365</b><span>tests automatisés</span></div>
-      </div>
-      <details><summary>Architecture</summary><p>La transcription tourne sur la carte graphique avec whisper.cpp (Vulkan) : 6 minutes au lieu de 24 sur le processeur pour la même vidéo. Un LLM choisit les passages et rédige titres et accroches ; des contrôles nommés rejettent les titres génériques, les accroches répétées ou les noms propres mal transcrits. Pour le jeu vidéo, les pics d’activité du chat Twitch et du son guident la sélection, et le cadrage détecte la webcam du streamer pour composer un écran partagé. Un critique indépendant peut refuser un clip. Le rendu passe par FFmpeg, l’état des runs et des coûts est suivi dans SQLite, et une interface Flask permet de retoucher un clip, d’en créer un à la main depuis la transcription ou de superviser la santé des agents.</p></details>
-      <ul class="tags"><li>Python</li><li>LLM</li><li>Multi-agents</li><li>whisper.cpp</li><li>OpenCV</li><li>FFmpeg</li><li>Flask</li><li>SQLite</li><li>pytest</li></ul>
-      <p style="margin-top:14px"><span class="link">Code privé</span> · <a class="link" href="#contact">Démonstration sur demande</a></p>
-    </div>
-  </article>
-
-  <article class="proj" data-cat="edge" data-type="acad">
+  <article class="proj featured" data-cat="edge" data-type="acad">
     <div class="side"><strong>CYCLOPE 2</strong>Vision &amp; IA<br>Équipe de 3, nov. 2025 – févr. 2026<span class="kind">Projet académique</span></div>
     <div>
       <figure class="proj-visual"><img src="portfolio-assets/cyclope-results.svg" alt="Graphique : mAP50 des entraînements YOLOv11m, sur les jeux de validation d’origine puis sur les jeux reconstruits" loading="lazy" decoding="async"></figure>
@@ -425,23 +444,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <details><summary>Démarche</summary><p>Chaque augmentation a été évaluée séparément avant de combiner les six meilleures, ce qui a donné une mAP50 de 0,728 sur les jeux de validation d’origine. Ces jeux contenaient des images augmentées et aucune scène vide, ce qui surestimait les scores : nous les avons reconstruits avec des images réelles uniquement. Sur ce test plus exigeant, la stratégie freeze/unfreeze (backbone gelé les 5 premières epochs) a apporté +75 % par rapport à l’entraînement classique.</p></details>
       <ul class="tags"><li>YOLOv11m</li><li>PyTorch</li><li>Ultralytics</li><li>Transfer learning</li><li>Data augmentation</li><li>Pré-annotation</li><li>ONNX</li><li>OpenCV</li><li>Raspberry Pi</li><li>Jetson</li></ul>
       <p style="margin-top:14px"><a class="link" href="https://github.com/Fil37/cyclope2-yolov11-mobility">Code sur GitHub</a></p>
-    </div>
-  </article>
-
-  <article class="proj" data-cat="edge" data-type="acad">
-    <div class="side"><strong>Fresques</strong>Traitement d’images et ML<br>Équipe de 6, 2025–2026<span class="kind">Projet académique</span></div>
-    <div>
-      <figure class="proj-visual"><img src="portfolio-assets/fresques-classification.jpg" alt="Fragments réels des six fresques, projection t-SNE des descripteurs de texture et taux de bonne classification des modèles" loading="lazy" decoding="async"></figure>
-      <h3>Identifier l’artiste d’un fragment de fresque</h3>
-      <p>Attribuer chacun des 2 610 fragments à sa fresque d’origine, parmi six œuvres de six artistes (Léonard de Vinci, Michel-Ange, Le Pérugin, Piero della Francesca, Tiepolo, Lanzani). Chaque fragment est décrit par sa texture (Haralick sur GLCM, LBP) et sa couleur (histogrammes HSV et LAB), puis classé par SVM, Random Forest, un réseau de neurones et un vote combinant ces modèles. J’ai pris en charge la partie texture : extraction et analyse des descripteurs Haralick et LBP.</p>
-      <div class="figures">
-        <div><b>91,5 %</b><span>de bonne classification, vote pondéré</span></div>
-        <div><b>87,3 %</b><span>avec la texture seule (SVM)</span></div>
-        <div><b>2 610</b><span>fragments, dont 519 en test</span></div>
-      </div>
-      <details><summary>Analyse des résultats</summary><p>Les fragments de Léonard de Vinci sont reconnus à 99 %, tandis que ceux de Piero della Francesca et de Tiepolo se confondent plus souvent. Les projections PCA, t-SNE et UMAP montrent pourquoi : certaines fresques forment des groupes bien séparés, d’autres se recouvrent. Limite à connaître : les fragments d’une même fresque sont répartis entre apprentissage et test, si bien que le modèle reconnaît une œuvre plutôt que le style général d’un artiste.</p></details>
-      <ul class="tags"><li>Python</li><li>OpenCV</li><li>scikit-image</li><li>scikit-learn</li><li>Keras</li><li>GLCM</li><li>LBP</li><li>SVM</li><li>Random Forest</li><li>t-SNE</li><li>UMAP</li></ul>
-      <p style="margin-top:14px"><a class="link" href="https://github.com/Fil37/Fragments_Classification_ML">Code sur GitHub</a></p>
     </div>
   </article>
 
@@ -462,49 +464,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     </div>
   </article>
 
-  <article class="proj" data-cat="fpga" data-type="acad">
-    <div class="side"><strong>FPGA</strong>Conception numérique<br>Binôme, 2025<span class="kind">Projet académique</span></div>
-    <div>
-      <figure class="proj-visual"><img src="portfolio-assets/sqrt-accelerator.svg" alt="Graphique : fréquence maximale et éléments logiques des 6 architectures synthétisées" loading="lazy" decoding="async"></figure>
-      <h3>Accélérateur matériel de racine carrée</h3>
-      <p>Un bloc de calcul destiné à être piloté par un processeur, décrit en VHDL, synthétisé sous Quartus et validé sous ModelSim. Six architectures synthétisées et comparées : Newton, approximation successive, restes successifs, combinatoire, pipeline et structurelle. Une septième, structurelle, a été conçue sans être finalisée.</p>
-      <div class="figures">
-        <div><b>4 885 → 735</b><span>éléments logiques, sans multiplicateur</span></div>
-        <div><b>123,69 MHz</b><span>version pipeline, un résultat par cycle</span></div>
-        <div><b>×50</b><span>sur la fréquence maximale</span></div>
-      </div>
-      <details><summary>Ce que montrent les résultats</summary><p>L’algorithme des restes successifs, qui n’utilise que des additions, des décalages et des comparaisons, donne la version la plus compacte : 735 éléments logiques à 84,1 MHz. Le pipeline offre le meilleur débit, à 123,69 MHz pour 2 863 éléments logiques. Les versions structurelles sont les plus pertinentes pour une transposition vers un ASIC.</p></details>
-      <ul class="tags"><li>VHDL</li><li>Quartus</li><li>ModelSim</li><li>Pipeline</li><li>Chemin de données</li></ul>
-    </div>
-  </article>
-
-  <article class="proj" data-cat="capteurs" data-type="acad">
-    <div class="side"><strong>MEMS</strong>MEMS+, Cadence Virtuoso<br>Binôme, 2025–2026<span class="kind">Projet académique</span></div>
-    <div>
-      <figure class="proj-visual"><img src="portfolio-assets/mems-accelerometer.jpg" alt="Capture MEMS+ du modèle 3D de l’accéléromètre et de sa réponse fréquentielle, avec les résultats de simulation" loading="lazy" decoding="async"></figure>
-      <h3>Accéléromètre MEMS capacitif pour inclinomètre</h3>
-      <p>Conception d’un accéléromètre capacitif mono-axe pour un inclinomètre de précision (±90°, soit ±1 G), avec une cible de 0,9 V/G sur une bande de 0 à 100 Hz. Dimensionnement mécanique sous CoventorMP MEMS+ (masse sismique, suspensions, peignes capacitifs), puis simulation de la chaîne d’acquisition en VHDL-AMS sous Cadence Virtuoso.</p>
-      <div class="figures">
-        <div><b>0,9 V/G</b><span>sensibilité validée en simulation</span></div>
-        <div><b>2 604 Hz</b><span>résonance, conforme à la cible</span></div>
-        <div><b>3,8 %</b><span>écart sur la capacité au repos</span></div>
-      </div>
-      <details><summary>Chaîne d’acquisition</summary><p>Amplificateur de charge à capacités commutées, horloges non recouvrantes à 100 kHz, démodulation synchrone par multiplieur et filtre passe-bas. Chaque bloc VHDL-AMS (capteur, AOP avec saturation à ±1,65 V, interrupteurs, multiplieur, générateur) a été validé séparément avant la simulation du système complet.</p></details>
-      <ul class="tags"><li>MEMS</li><li>CoventorMP MEMS+</li><li>VHDL-AMS</li><li>Cadence Virtuoso</li><li>Capacités commutées</li><li>Démodulation synchrone</li></ul>
-    </div>
-  </article>
-
-  <article class="proj" data-cat="capteurs firmware" data-type="acad">
-    <div class="side"><strong>C++ / MFC</strong>Instrumentation<br>Projet individuel, janvier 2026<span class="kind">Projet académique</span></div>
-    <div>
-      <figure class="proj-visual"><img src="portfolio-assets/usb-accelerometer-app.svg" alt="Chaîne d’acquisition : accéléromètre USB, serveur C++ et client de visualisation des trois axes" loading="lazy" decoding="async"></figure>
-      <h3>Acquisition et visualisation temps réel d’un accéléromètre USB</h3>
-      <p>Application desktop qui acquiert, traite et affiche les trois axes d’un accéléromètre USB à 10 Hz, avec échelles dynamiques et mode plein écran.</p>
-      <details><summary>Architecture</summary><p>Client-serveur sur sockets asynchrones, reprise après déconnexion à chaud, sérialisation binaire des historiques et relecture des mesures enregistrées.</p></details>
-      <ul class="tags"><li>C++</li><li>MFC</li><li>Qt</li><li>USB/HID</li><li>Sockets</li></ul>
-    </div>
-  </article>
-
   <article class="proj" data-cat="firmware fpga capteurs" data-type="acad">
     <div class="side"><strong>Bus CAN</strong>Architecture hétérogène<br>Équipe de 3, déc. 2025 – janv. 2026<span class="kind">Projet académique</span></div>
     <div>
@@ -521,7 +480,83 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     </div>
   </article>
 
-  <article class="proj" data-cat="firmware capteurs" data-type="acad">
+  <article class="proj" data-cat="genai" data-type="perso">
+    <div class="side"><strong>Breeze</strong>Agents LLM, rendu vidéo<span class="kind perso">Projet personnel</span></div>
+    <div>
+      <figure class="proj-visual"><img src="portfolio-assets/breeze-electronics.jpg" alt="Aperçu d’une leçon Breeze sur la tension et le courant dans un circuit électrique" loading="lazy" decoding="async"></figure>
+      <h3>Breeze, une chaîne de production de vidéos pédagogiques par IA</h3>
+      <p>Un pipeline multi-agents qui part d’une idée reçue et en fait une vidéo animée de 90 à 180 secondes, narrée en français : recherche, simplification, script, storyboard, contrôle qualité, rendu, métadonnées et publication. Quatre chaînes thématiques (électronique, physique, mathématiques, économie) tournent dans un même processus.</p>
+      <div class="figures">
+        <div><b>9 agents</b><span>coordonnés par un orchestrateur</span></div>
+        <div><b>4 chaînes</b><span>thématiques produites en parallèle</span></div>
+        <div><b>53</b><span>scripts de test hors ligne</span></div>
+      </div>
+      <details><summary>Architecture</summary><p>Chaque agent écrit un fichier JSON lu par le suivant. L’agent de contrôle qualité peut renvoyer le script ou le storyboard jusqu’à trois fois avant le rendu. Le rendu dessine chaque image dans un navigateur piloté par Playwright, puis FFmpeg assemble la vidéo, la voix off et les sous-titres. Un tableau de bord web suit l’état de chaque agent et le coût de chaque exécution, et le fournisseur de LLM se choisit dans la configuration (OpenAI, Anthropic, Gemini ou Ollama en local).</p></details>
+      <ul class="tags"><li>Python</li><li>LLM</li><li>Multi-agents</li><li>Playwright</li><li>FFmpeg</li><li>TTS</li><li>Flask</li></ul>
+      <p style="margin-top:14px"><a class="link" href="https://github.com/Fil37/breeze.edu-pipeline">Code sur GitHub</a> · <a class="link" href="https://github.com/Fil37/breeze.edu-pipeline/blob/main/assets/breeze-demo-electronics.mp4">Voir une vidéo produite</a></p>
+    </div>
+  </article>
+
+  <div class="more" id="autres-projets">
+  <h3 class="more-title">Autres projets <span>· cliquez sur une carte pour le détail</span></h3>
+  <div class="proj-grid">
+  <article class="proj compact" data-cat="edge" data-type="acad">
+    <div class="side"><strong>Fresques</strong>Traitement d’images et ML<br>Équipe de 6, 2025–2026<span class="kind">Projet académique</span></div>
+    <div>
+      <figure class="proj-visual"><img src="portfolio-assets/fresques-classification.jpg" alt="Fragments réels des six fresques, projection t-SNE des descripteurs de texture et taux de bonne classification des modèles" loading="lazy" decoding="async"></figure>
+      <h3>Identifier l’artiste d’un fragment de fresque</h3>
+      <p>Attribuer chacun des 2 610 fragments à sa fresque d’origine, parmi six œuvres de six artistes (Léonard de Vinci, Michel-Ange, Le Pérugin, Piero della Francesca, Tiepolo, Lanzani). Chaque fragment est décrit par sa texture (Haralick sur GLCM, LBP) et sa couleur (histogrammes HSV et LAB), puis classé par SVM, Random Forest, un réseau de neurones et un vote combinant ces modèles. J’ai pris en charge la partie texture : extraction et analyse des descripteurs Haralick et LBP.</p>
+      <div class="figures">
+        <div><b>91,5 %</b><span>de bonne classification, vote pondéré</span></div>
+        <div><b>87,3 %</b><span>avec la texture seule (SVM)</span></div>
+        <div><b>2 610</b><span>fragments, dont 519 en test</span></div>
+      </div>
+      <details><summary>Analyse des résultats</summary><p>Les fragments de Léonard de Vinci sont reconnus à 99 %, tandis que ceux de Piero della Francesca et de Tiepolo se confondent plus souvent. Les projections PCA, t-SNE et UMAP montrent pourquoi : certaines fresques forment des groupes bien séparés, d’autres se recouvrent. Limite à connaître : les fragments d’une même fresque sont répartis entre apprentissage et test, si bien que le modèle reconnaît une œuvre plutôt que le style général d’un artiste.</p></details>
+      <ul class="tags"><li>Python</li><li>OpenCV</li><li>scikit-image</li><li>scikit-learn</li><li>Keras</li><li>GLCM</li><li>LBP</li><li>SVM</li><li>Random Forest</li><li>t-SNE</li><li>UMAP</li></ul>
+      <p style="margin-top:14px"><a class="link" href="https://github.com/Fil37/Fragments_Classification_ML">Code sur GitHub</a></p>
+    </div>
+  </article>
+  <article class="proj compact" data-cat="fpga" data-type="acad">
+    <div class="side"><strong>FPGA</strong>Conception numérique<br>Binôme, 2025<span class="kind">Projet académique</span></div>
+    <div>
+      <figure class="proj-visual"><img src="portfolio-assets/sqrt-accelerator.svg" alt="Graphique : fréquence maximale et éléments logiques des 6 architectures synthétisées" loading="lazy" decoding="async"></figure>
+      <h3>Accélérateur matériel de racine carrée</h3>
+      <p>Un bloc de calcul destiné à être piloté par un processeur, décrit en VHDL, synthétisé sous Quartus et validé sous ModelSim. Six architectures synthétisées et comparées : Newton, approximation successive, restes successifs, combinatoire, pipeline et structurelle. Une septième, structurelle, a été conçue sans être finalisée.</p>
+      <div class="figures">
+        <div><b>4 885 → 735</b><span>éléments logiques, sans multiplicateur</span></div>
+        <div><b>123,69 MHz</b><span>version pipeline, un résultat par cycle</span></div>
+        <div><b>×50</b><span>sur la fréquence maximale</span></div>
+      </div>
+      <details><summary>Ce que montrent les résultats</summary><p>L’algorithme des restes successifs, qui n’utilise que des additions, des décalages et des comparaisons, donne la version la plus compacte : 735 éléments logiques à 84,1 MHz. Le pipeline offre le meilleur débit, à 123,69 MHz pour 2 863 éléments logiques. Les versions structurelles sont les plus pertinentes pour une transposition vers un ASIC.</p></details>
+      <ul class="tags"><li>VHDL</li><li>Quartus</li><li>ModelSim</li><li>Pipeline</li><li>Chemin de données</li></ul>
+    </div>
+  </article>
+  <article class="proj compact" data-cat="capteurs" data-type="acad">
+    <div class="side"><strong>MEMS</strong>MEMS+, Cadence Virtuoso<br>Binôme, 2025–2026<span class="kind">Projet académique</span></div>
+    <div>
+      <figure class="proj-visual"><img src="portfolio-assets/mems-accelerometer.jpg" alt="Capture MEMS+ du modèle 3D de l’accéléromètre et de sa réponse fréquentielle, avec les résultats de simulation" loading="lazy" decoding="async"></figure>
+      <h3>Accéléromètre MEMS capacitif pour inclinomètre</h3>
+      <p>Conception d’un accéléromètre capacitif mono-axe pour un inclinomètre de précision (±90°, soit ±1 G), avec une cible de 0,9 V/G sur une bande de 0 à 100 Hz. Dimensionnement mécanique sous CoventorMP MEMS+ (masse sismique, suspensions, peignes capacitifs), puis simulation de la chaîne d’acquisition en VHDL-AMS sous Cadence Virtuoso.</p>
+      <div class="figures">
+        <div><b>0,9 V/G</b><span>sensibilité validée en simulation</span></div>
+        <div><b>2 604 Hz</b><span>résonance, conforme à la cible</span></div>
+        <div><b>3,8 %</b><span>écart sur la capacité au repos</span></div>
+      </div>
+      <details><summary>Chaîne d’acquisition</summary><p>Amplificateur de charge à capacités commutées, horloges non recouvrantes à 100 kHz, démodulation synchrone par multiplieur et filtre passe-bas. Chaque bloc VHDL-AMS (capteur, AOP avec saturation à ±1,65 V, interrupteurs, multiplieur, générateur) a été validé séparément avant la simulation du système complet.</p></details>
+      <ul class="tags"><li>MEMS</li><li>CoventorMP MEMS+</li><li>VHDL-AMS</li><li>Cadence Virtuoso</li><li>Capacités commutées</li><li>Démodulation synchrone</li></ul>
+    </div>
+  </article>
+  <article class="proj compact" data-cat="capteurs firmware" data-type="acad">
+    <div class="side"><strong>C++ / MFC</strong>Instrumentation<br>Projet individuel, janvier 2026<span class="kind">Projet académique</span></div>
+    <div>
+      <figure class="proj-visual"><img src="portfolio-assets/usb-accelerometer-app.svg" alt="Chaîne d’acquisition : accéléromètre USB, serveur C++ et client de visualisation des trois axes" loading="lazy" decoding="async"></figure>
+      <h3>Acquisition et visualisation temps réel d’un accéléromètre USB</h3>
+      <p>Application desktop qui acquiert, traite et affiche les trois axes d’un accéléromètre USB à 10 Hz, avec échelles dynamiques et mode plein écran.</p>
+      <details><summary>Architecture</summary><p>Client-serveur sur sockets asynchrones, reprise après déconnexion à chaud, sérialisation binaire des historiques et relecture des mesures enregistrées.</p></details>
+      <ul class="tags"><li>C++</li><li>MFC</li><li>Qt</li><li>USB/HID</li><li>Sockets</li></ul>
+    </div>
+  </article>
+  <article class="proj compact" data-cat="firmware capteurs" data-type="acad">
     <div class="side"><strong>MKR WAN 1310</strong>The Things Network<br>Équipe de 3, 2026<span class="kind">Projet académique</span></div>
     <div>
       <figure class="proj-visual"><img src="portfolio-assets/lora-ttn.jpg" alt="Captures du TP : réception LoRa avec RSSI, jonction OTAA réussie, mesures du capteur et trame reçue sur la console TTN" loading="lazy" decoding="async"></figure>
@@ -536,8 +571,23 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <ul class="tags"><li>LoRa</li><li>LoRaWAN</li><li>OTAA</li><li>Arduino</li><li>TTN</li><li>EU868</li></ul>
     </div>
   </article>
-
-  <article class="proj" data-cat="genai" data-type="perso">
+  <article class="proj compact" data-cat="genai edge" data-type="perso">
+    <div class="side"><strong>Auto Clip</strong>Agents LLM, vision, rendu vidéo<span class="kind perso">Projet personnel</span></div>
+    <div>
+      <figure class="proj-visual"><img src="portfolio-assets/auto-clip.svg" alt="Illustration du pipeline Auto Clip : une vidéo longue traverse cinq agents coordonnés par un orchestrateur et devient des clips verticaux sous-titrés" loading="lazy" decoding="async"></figure>
+      <h3>Auto Clip, des clips verticaux tirés de vidéos longues</h3>
+      <p>Une application locale qui transforme une vidéo longue (spectacle, interview, VOD Twitch de jeu vidéo) en clips verticaux de 61 à 120 secondes, sous-titrés mot à mot, avec un titre accrocheur et une miniature. Un orchestrateur coordonne cinq agents : transcription, sélection des passages, critique avec droit de veto, cadrage automatique et rendu.</p>
+      <div class="figures">
+        <div><b>6 agents</b><span>un orchestrateur et cinq spécialistes</span></div>
+        <div><b>×4</b><span>transcription sur GPU local plutôt que CPU</span></div>
+        <div><b>365</b><span>tests automatisés</span></div>
+      </div>
+      <details><summary>Architecture</summary><p>La transcription tourne sur la carte graphique avec whisper.cpp (Vulkan) : 6 minutes au lieu de 24 sur le processeur pour la même vidéo. Un LLM choisit les passages et rédige titres et accroches ; des contrôles nommés rejettent les titres génériques, les accroches répétées ou les noms propres mal transcrits. Pour le jeu vidéo, les pics d’activité du chat Twitch et du son guident la sélection, et le cadrage détecte la webcam du streamer pour composer un écran partagé. Un critique indépendant peut refuser un clip. Le rendu passe par FFmpeg, l’état des runs et des coûts est suivi dans SQLite, et une interface Flask permet de retoucher un clip, d’en créer un à la main depuis la transcription ou de superviser la santé des agents.</p></details>
+      <ul class="tags"><li>Python</li><li>LLM</li><li>Multi-agents</li><li>whisper.cpp</li><li>OpenCV</li><li>FFmpeg</li><li>Flask</li><li>SQLite</li><li>pytest</li></ul>
+      <p style="margin-top:14px"><span class="link">Code privé</span> · <a class="link" href="#contact">Démonstration sur demande</a></p>
+    </div>
+  </article>
+  <article class="proj compact" data-cat="genai" data-type="perso">
     <div class="side"><strong>Agent Track</strong>LangChain, Ollama<span class="kind perso">Projet personnel</span></div>
     <div>
       <figure class="proj-visual"><img src="portfolio-assets/agent-track.svg" alt="Illustration du superviseur Agent Track qui délègue à un expert et à des outils" loading="lazy" decoding="async"></figure>
@@ -553,8 +603,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <p style="margin-top:14px"><a class="link" href="https://github.com/Fil37/agent-track">Code sur GitHub</a></p>
     </div>
   </article>
-
-  <article class="proj" data-cat="genai" data-type="perso">
+  <article class="proj compact" data-cat="genai" data-type="perso">
     <div class="side"><strong>Streamlit</strong>Recherche structurée<span class="kind perso">Projet personnel</span></div>
     <div>
       <figure class="proj-visual"><img src="portfolio-assets/profile-search.svg" alt="Illustration de l’interface de recherche et de validation structurée de profils publics" loading="lazy" decoding="async"></figure>
@@ -570,8 +619,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <p style="margin-top:14px"><a class="link" href="https://github.com/Fil37/professional-profile-search">Code sur GitHub</a></p>
     </div>
   </article>
-
-  <article class="proj" data-cat="genai" data-type="perso">
+  <article class="proj compact" data-cat="genai" data-type="perso">
     <div class="side"><strong>Llama 3.2</strong>LLM local<span class="kind perso">Projet personnel</span></div>
     <div>
       <figure class="proj-visual"><img src="portfolio-assets/llm-memory.svg" alt="Illustration de la mémoire conversationnelle à fenêtre glissante et de la sortie structurée" loading="lazy" decoding="async"></figure>
@@ -587,6 +635,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <p style="margin-top:14px"><a class="link" href="https://github.com/Fil37/llm-foundations-memory">Code sur GitHub</a></p>
     </div>
   </article>
+  </div>
+  </div>
 </div></section>
 
 <section class="block" id="experience"><div class="wrap">
@@ -716,6 +766,23 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 <script>
 (function(){
+  document.documentElement.classList.add('js');
+  // Menu repliable (téléphone)
+  var header=document.querySelector('header.site'),mb=document.querySelector('.menu-btn');
+  mb.addEventListener('click',function(){var o=header.classList.toggle('menu-open');mb.setAttribute('aria-expanded',o)});
+  [].slice.call(document.querySelectorAll('.nav ul a')).forEach(function(a){a.addEventListener('click',function(){header.classList.remove('menu-open');mb.setAttribute('aria-expanded','false')})});
+  // Projets secondaires : carte compacte qui s'ouvre au clic
+  [].slice.call(document.querySelectorAll('.proj.compact')).forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.className='more-btn';b.textContent='Voir le détail';b.setAttribute('aria-expanded','false');
+    c.querySelector('.side+div').appendChild(b);
+    function toggle(){var o=c.classList.toggle('open');b.textContent=o?'Réduire':'Voir le détail';b.setAttribute('aria-expanded',o);if(o)c.scrollIntoView({block:'nearest'})}
+    b.addEventListener('click',function(e){e.stopPropagation();toggle()});
+    c.addEventListener('click',function(e){if(!c.classList.contains('open')&&!e.target.closest('a,summary'))toggle()});
+  });
+})();
+</script>
+<script>
+(function(){
   var projects=[].slice.call(document.querySelectorAll('.proj'));
   var filterBtns=[].slice.call(document.querySelectorAll('.filters button[data-filter]'));
   var typeBtns=[].slice.call(document.querySelectorAll('.filters button[data-type]'));
@@ -735,6 +802,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     filterBtns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.filter===f)});
     typeBtns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.type===curT)});
     icBtns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.filter===f)});
+    var more=document.querySelector('.more');if(more)more.hidden=!more.querySelector('.proj:not([hidden])');
     var t=typeLabels[curT]?(n>1?typeLabels[curT].replace('académique','académiques').replace('personnel','personnels'):typeLabels[curT]):'';
     count.textContent=n===0?'Aucun projet ne correspond à ces filtres.':n+' projet'+(n>1?'s':'')+t+(f==='all'?'':' en '+labels[f]);
   }
