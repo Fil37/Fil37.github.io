@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" role="img" aria-labelledby="title desc">
+  <title id="title">Auto Clip — de la vidéo longue aux clips verticaux</title>
+  <desc id="desc">Illustration du pipeline : une vidéo longue passe par cinq agents (transcrire, sélectionner, critiquer, cadrer, rendre) coordonnés par un orchestrateur, et devient des clips verticaux sous-titrés mot à mot.</desc>
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#103c2d"/><stop offset="1" stop-color="#071f18"/></linearGradient></defs>
+  <rect width="960" height="480" rx="22" fill="url(#bg)"/>
+  <text x="54" y="58" fill="#d9b26a" font-family="Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="3">ILLUSTRATION · PIPELINE MULTI-AGENTS</text>
+
+  <!-- source video (16:9) -->
+  <g font-family="Arial,sans-serif" text-anchor="middle">
+    <rect x="44" y="196" width="138" height="80" rx="12" fill="#f3f4ee"/>
+    <path d="M102 222v28l24-14z" fill="#103c2d"/>
+    <text x="113" y="302" fill="#f3f4ee" font-size="14" font-weight="700">VIDÉO LONGUE</text>
+    <text x="113" y="321" fill="#9fb3a9" font-size="12">YouTube, VOD Twitch</text>
+  </g>
+
+  <!-- orchestrator -->
+  <g font-family="Arial,sans-serif" text-anchor="middle">
+    <rect x="270" y="92" width="380" height="44" rx="12" fill="#d9b26a"/>
+    <text x="460" y="120" fill="#103c2d" font-size="16" font-weight="700">ORCHESTRATEUR · agent000</text>
+  </g>
+  <g fill="none" stroke="#c8874a" stroke-width="2" stroke-dasharray="4 5">
+    <path d="M290 136v58M366 136v58M442 136v58M518 136v58M594 136v58"/>
+  </g>
+
+  <!-- 5 specialists -->
+  <g fill="none" stroke="#c8874a" stroke-width="4"><path d="M182 236h66M638 236h88"/></g>
+  <g fill="#c8874a"><path d="m240 227 16 9-16 9zM718 227l16 9-16 9z"/></g>
+  <g font-family="Arial,sans-serif" text-anchor="middle">
+    <g fill="#f3f4ee">
+      <rect x="256" y="194" width="68" height="84" rx="12"/><rect x="332" y="194" width="68" height="84" rx="12"/>
+      <rect x="408" y="194" width="68" height="84" rx="12"/><rect x="484" y="194" width="68" height="84" rx="12"/>
+      <rect x="560" y="194" width="68" height="84" rx="12"/>
+    </g>
+    <g fill="#103c2d" font-size="20" font-weight="700">
+      <text x="290" y="232">001</text><text x="366" y="232">002</text><text x="442" y="232">003</text><text x="518" y="232">004</text><text x="594" y="232">005</text>
+    </g>
+    <g fill="#56675f" font-size="9.5" font-weight="700">
+      <text x="290" y="256">TRANSCRIT</text><text x="366" y="256">CHOISIT</text><text x="442" y="256">CRITIQUE</text><text x="518" y="256">CADRE</text><text x="594" y="256">REND</text>
+    </g>
+    <g fill="#9fb3a9" font-size="11">
+      <text x="290" y="300">GPU local</text><text x="366" y="300">LLM</text><text x="442" y="300">veto</text><text x="518" y="300">visages</text><text x="594" y="300">FFmpeg</text>
+    </g>
+  </g>
+
+  <!-- vertical clips -->
+  <g font-family="Arial,sans-serif" text-anchor="middle">
+    <rect x="742" y="132" width="96" height="170" rx="14" fill="#f3f4ee"/>
+    <rect x="752" y="146" width="76" height="20" rx="4" fill="#ffffff" stroke="#103c2d" stroke-width="1.5"/>
+    <rect x="760" y="153" width="60" height="6" rx="3" fill="#103c2d"/>
+    <circle cx="790" cy="214" r="22" fill="#9fb3a9"/>
+    <rect x="756" y="268" width="30" height="10" rx="3" fill="#d9b26a"/><rect x="790" y="268" width="34" height="10" rx="3" fill="#103c2d"/>
+    <rect x="852" y="152" width="74" height="132" rx="12" fill="#f3f4ee" opacity=".45"/>
+    <text x="830" y="330" fill="#f3f4ee" font-size="14" font-weight="700">CLIPS 9:16</text>
+    <text x="830" y="349" fill="#9fb3a9" font-size="12">sous-titres mot à mot</text>
+  </g>
+
+  <text x="54" y="430" fill="#9fb3a9" font-family="Arial,sans-serif" font-size="14">Interface web locale : runs, retouches, réserve de passages, supervision des agents et des coûts.</text>
+</svg>

@@ -394,6 +394,22 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     </div>
   </article>
 
+  <article class="proj" data-cat="genai edge" data-type="perso">
+    <div class="side"><strong>Auto Clip</strong>Agents LLM, vision, rendu vidéo<span class="kind perso">Projet personnel</span></div>
+    <div>
+      <figure class="proj-visual"><img src="portfolio-assets/auto-clip.svg" alt="Illustration du pipeline Auto Clip : une vidéo longue traverse cinq agents coordonnés par un orchestrateur et devient des clips verticaux sous-titrés" loading="lazy" decoding="async"></figure>
+      <h3>Auto Clip, des clips verticaux tirés de vidéos longues</h3>
+      <p>Une application locale qui transforme une vidéo longue (spectacle, interview, VOD Twitch de jeu vidéo) en clips verticaux de 61 à 120 secondes, sous-titrés mot à mot, avec un titre accrocheur et une miniature. Un orchestrateur coordonne cinq agents : transcription, sélection des passages, critique avec droit de veto, cadrage automatique et rendu.</p>
+      <div class="figures">
+        <div><b>6 agents</b><span>un orchestrateur et cinq spécialistes</span></div>
+        <div><b>×4</b><span>transcription sur GPU local plutôt que CPU</span></div>
+        <div><b>365</b><span>tests automatisés</span></div>
+      </div>
+      <details><summary>Architecture</summary><p>La transcription tourne sur la carte graphique avec whisper.cpp (Vulkan) : 6 minutes au lieu de 24 sur le processeur pour la même vidéo. Un LLM choisit les passages et rédige titres et accroches ; des contrôles nommés rejettent les titres génériques, les accroches répétées ou les noms propres mal transcrits. Pour le jeu vidéo, les pics d’activité du chat Twitch et du son guident la sélection, et le cadrage détecte la webcam du streamer pour composer un écran partagé. Un critique indépendant peut refuser un clip. Le rendu passe par FFmpeg, l’état des runs et des coûts est suivi dans SQLite, et une interface Flask permet de retoucher un clip, d’en créer un à la main depuis la transcription ou de superviser la santé des agents.</p></details>
+      <ul class="tags"><li>Python</li><li>LLM</li><li>Multi-agents</li><li>whisper.cpp</li><li>OpenCV</li><li>FFmpeg</li><li>Flask</li><li>SQLite</li><li>pytest</li></ul>
+    </div>
+  </article>
+
   <article class="proj" data-cat="edge" data-type="acad">
     <div class="side"><strong>CYCLOPE 2</strong>Vision &amp; IA<br>Équipe de 3, nov. 2025 – févr. 2026<span class="kind">Projet académique</span></div>
     <div>
